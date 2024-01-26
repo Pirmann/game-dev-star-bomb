@@ -16,12 +16,29 @@ class MyGame extends Phaser.Scene
     {
         // load images
         this.load.image('sky',sky)
+        this.load.image('ground',ground)
+        this.load.image('star',star)
+        this.load.image('bomb',bomb)
+
+        this.load.spritesheet('monkey', monkey,{
+            frameHeight: 48,
+            frameWidth: 32
+        })
     }
       
     create ()
     {
         // create sky
         this.add.image(400,300,'sky')
+
+        // group for platforms
+        const platforms = this.physics.add.staticGroup()
+        platforms.create(400, 568, 'ground')
+            .setScale(2).refreshBody()
+        platforms.create(600, 400, 'ground')
+        platforms.create(50, 250, 'ground')
+        platforms.create(750, 220, 'ground')
+
     }
 }
 
