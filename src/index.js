@@ -46,6 +46,34 @@ class MyGame extends Phaser.Scene
         this.player.setCollideWorldBounds(true)
 
         this.physics.add.collider(this.player, platforms)
+
+        this.anims.create({
+            key: 'stay',
+            frames: [{
+                key: 'monkey',
+                frame: 4
+            }]
+        })
+
+        //walking
+        this.anims.create({
+            key: 'right',
+            frames: this.anims.generateFrameNumbers('monkey', {
+                start: 5,
+                end: 8
+            }),
+            frameRate: 10,
+            repeat: -1
+        })
+        this.anims.create({
+            key: 'left',
+            frames: this.anims.generateFrameNumbers('monkey', {
+                start: 0,
+                end: 3
+            }),
+            frameRate: 10,
+            repeat: -1
+        })
     }
 }
 
