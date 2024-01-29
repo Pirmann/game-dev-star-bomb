@@ -100,6 +100,13 @@ class MyGame extends Phaser.Scene
             score = score +1
 
             scoreText.setText('score: ' + score)
+
+            if (stars.countActive(true)===0){
+                stars.children.iterate(function(child){
+                    child.enableBody(true, child.x, 0,true,true)
+                })
+            }
+
         }
 
         this.physics.add.overlap(this.player,stars,collect,null,this)
