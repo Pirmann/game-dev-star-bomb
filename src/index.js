@@ -75,6 +75,30 @@ class MyGame extends Phaser.Scene
             repeat: -1
         })
     }
+    update() {
+        const cursors = this.input.keyboard.createCursorKeys()
+        const spaceKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)
+
+        if(spaceKey.isDown && this.player.body.touching.down){
+            this.player.setVelocityY(-450)
+        }
+
+        else if(cursors.left.isDown){
+            this.player.setVelocityX(-160)
+            this.player.anims.play('left', true)
+        }
+        else if(cursors.right.isDown){
+            this.player.setVelocityX(160)
+            this.player.anims.play('right', true)
+        }
+        else if(cursors.down.isDown){
+            this.player.setVelocityY(500)
+        }
+        else{
+            this.player.setVelocityX(0)
+            this.player.anims.play('stay')
+        }
+    }
 }
 
 const config = {
