@@ -105,11 +105,27 @@ class MyGame extends Phaser.Scene
                 stars.children.iterate(function(child){
                     child.enableBody(true, child.x, 0,true,true)
                 })
+
+
             }
 
         }
 
         this.physics.add.overlap(this.player,stars,collect,null,this)
+
+        function bombTouched(player, bomb){
+            this.physics.pause()
+            this.player.setTint(0xff0000)
+            this.player.anims.play('stay')
+        }
+
+        const bombs = this.physics.add.group()
+        this.physics.add.collider(bombs,platforms)
+        this.physics.add.collider(this.player, bombs, bombTouched, true, this)
+
+
+
+
 
     }
     update() {
