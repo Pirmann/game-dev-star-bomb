@@ -39,6 +39,9 @@ class MyGame extends Phaser.Scene
         platforms.create(50, 250, 'ground')
         platforms.create(750, 220, 'ground')
 
+
+
+
         const stars = this.physics.add.group({
             key: 'star',
             repeat: 11,
@@ -106,6 +109,14 @@ class MyGame extends Phaser.Scene
                     child.enableBody(true, child.x, 0,true,true)
                 })
 
+                var x = player.x <400
+                        ? Phaser.Math.Between(400, 800)
+                        : Phaser.Math.Between(0,400)
+
+                const bomb = bombs.create(x, 16,'bomb')
+                bomb.setBounce(1)
+                bomb.setCollideWorldBounds(true)
+                bomb.setVelocity(Phaser.Math.Between(-200,200), 20)
 
             }
 
@@ -121,8 +132,12 @@ class MyGame extends Phaser.Scene
 
         const bombs = this.physics.add.group()
         this.physics.add.collider(bombs,platforms)
-        this.physics.add.collider(this.player, bombs, bombTouched, true, this)
+        this.physics.add.collider(this.player, bombs, bombTouched, null, this)
 
+        const bomb = bombs.create(400, 16,'bomb')
+        bomb.setBounce(1)
+        bomb.setCollideWorldBounds(true)
+        bomb.setVelocity(Phaser.Math.Between(-200,200), 20)
 
 
 
@@ -161,7 +176,7 @@ const config = {
         default: 'arcade',
         arcade: {
             gravity: {y: 450},
-            debug: true
+            debug: false
         }
     },
     width: 800,
