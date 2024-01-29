@@ -97,6 +97,9 @@ class MyGame extends Phaser.Scene
 
         function collect(player, star){
             star.disableBody(true, true)
+            score = score +1
+
+            scoreText.setText('score: ' + score)
         }
 
         this.physics.add.overlap(this.player,stars,collect,null,this)
