@@ -52,15 +52,13 @@ class MyGame extends Phaser.Scene
         this.physics.add.collider(stars,platforms)
 
 
-
-
-
         // add player
         this.player = this.physics.add.sprite(100, 450, 'monkey')
         this.player.setBounce(0.2)
         this.player.setCollideWorldBounds(true)
 
         this.physics.add.collider(this.player, platforms)
+
 
         this.anims.create({
             key: 'stay',
@@ -89,6 +87,20 @@ class MyGame extends Phaser.Scene
             frameRate: 10,
             repeat: -1
         })
+        const scoreText = this.add.text(15,15,'score : 0',{
+            fontSize: '40px'
+            fill: '#000'
+        })
+        let score = 0
+
+
+
+        function collect(player, star){
+            star.disableBody(true, true)
+        }
+
+        this.physics.add.overlap(this.player,stars,collect,null,this)
+
     }
     update() {
         const cursors = this.input.keyboard.createCursorKeys()
