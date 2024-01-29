@@ -39,6 +39,21 @@ class MyGame extends Phaser.Scene
         platforms.create(50, 250, 'ground')
         platforms.create(750, 220, 'ground')
 
+        const stars = this.physics.add.group({
+            key: 'star',
+            repeat: 11,
+            setXY:{x:11,y:0,stepX: 70}
+        })
+        
+        stars.children.iterate(function(child){
+            child.setBounceY(Phaser.Math.FloatBetween(0.4,0.8))
+        })
+        
+        this.physics.add.collider(stars,platforms)
+
+
+
+
 
         // add player
         this.player = this.physics.add.sprite(100, 450, 'monkey')
