@@ -88,7 +88,7 @@ class MyGame extends Phaser.Scene
             repeat: -1
         })
         const scoreText = this.add.text(15,15,'score : 0',{
-            fontSize: '40px'
+            fontSize: '40px',
             fill: '#000'
         })
         let score = 0
